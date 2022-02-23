@@ -1,10 +1,16 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
 import 'HomeDatabase.dart';
 
 class EditDatabase extends StatelessWidget {
+  TextEditingController Name = TextEditingController();
+  TextEditingController Phone = TextEditingController();
+
+  final RealtimeDatabase = FirebaseDatabase.instance;
   @override
   Widget build(BuildContext context) {
+    final ref = RealtimeDatabase.ref().child('Users');
     return Scaffold(
       backgroundColor: Color(0xff009966),
       appBar: AppBar(
@@ -21,6 +27,7 @@ class EditDatabase extends StatelessWidget {
             Container(
               child: TextField(
                 style: TextStyle(color: Colors.white, fontSize: 18),
+                controller: Name,
                 decoration: InputDecoration(
                   prefixIcon: Icon(
                     Icons.account_circle,
@@ -35,6 +42,7 @@ class EditDatabase extends StatelessWidget {
             Container(
               child: TextField(
                 style: TextStyle(color: Colors.white, fontSize: 18),
+                controller: Phone,
                 decoration: InputDecoration(
                   prefixIcon: Icon(
                     Icons.perm_phone_msg_outlined,
@@ -56,7 +64,8 @@ class EditDatabase extends StatelessWidget {
                 padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
                 color: Color(0xff003333),
                 onPressed: () {
-                  Navigator.push(context,
+                  ref.push().set({Name.text: Phone.text}).asStream();
+                  Navigator.pushReplacement(context,
                       MaterialPageRoute(builder: (_) => HomeDatabase()));
                 },
                 child: Text(
