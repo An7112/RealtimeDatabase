@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_realtime/EditDatabase.dart';
 
 class HomeDatabase extends StatefulWidget {
   HomeDatabase({Key? key}) : super(key: key);
@@ -10,6 +11,6 @@ class HomeDatabase extends StatefulWidget {
 class _HomeDatabaseState extends State<HomeDatabase> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold();
   }
 }
