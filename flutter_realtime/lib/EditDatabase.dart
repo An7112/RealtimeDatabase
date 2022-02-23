@@ -25,7 +25,7 @@ class EditDatabase extends StatelessWidget {
               height: 10,
             ),
             Container(
-              child: TextField(
+              child: TextFormField(
                 style: TextStyle(color: Colors.white, fontSize: 18),
                 controller: Name,
                 decoration: InputDecoration(
@@ -37,10 +37,17 @@ class EditDatabase extends StatelessWidget {
                   hintStyle: TextStyle(color: Color(0xff99CCCC), fontSize: 16),
                   hintText: 'Name',
                 ),
+                validator: (ValueKey) {
+                  if (ValueKey!.isEmpty) {
+                    return "* Required";
+                  } else {
+                    return null;
+                  }
+                },
               ),
             ),
             Container(
-              child: TextField(
+              child: TextFormField(
                 style: TextStyle(color: Colors.white, fontSize: 18),
                 controller: Phone,
                 decoration: InputDecoration(
@@ -52,6 +59,13 @@ class EditDatabase extends StatelessWidget {
                   hintStyle: TextStyle(color: Color(0xff99CCCC), fontSize: 16),
                   hintText: 'Phone',
                 ),
+                validator: (ValueKey) {
+                  if (ValueKey!.isEmpty) {
+                    return "* Required";
+                  } else {
+                    return null;
+                  }
+                },
               ),
             ),
             SizedBox(
