@@ -55,7 +55,10 @@ class EditDatabase extends StatelessWidget {
               child: MaterialButton(
                 padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
                 color: Color(0xff003333),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (_) => HomeDatabase()));
+                },
                 child: Text(
                   "save",
                   textAlign: TextAlign.center,
