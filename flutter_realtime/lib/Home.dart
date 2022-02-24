@@ -1,30 +1,24 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_realtime/EditDatabase.dart';
 
-class HomeDatabase extends StatefulWidget {
-  HomeDatabase({Key? key}) : super(key: key);
+class Home extends StatefulWidget {
+  Home({Key? key}) : super(key: key);
 
   @override
-  State<HomeDatabase> createState() => _HomeDatabaseState();
+  State<Home> createState() => _HomeState();
 }
 
-class _HomeDatabaseState extends State<HomeDatabase> {
-  final RealtimeDatabase = FirebaseDatabase.instance;
+class _HomeState extends State<Home> {
+  
   @override
   Widget build(BuildContext context) {
-    final ref = RealtimeDatabase.ref().child('Users');
+  
     return Scaffold(
       backgroundColor: Color(0xff009966),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (_) => EditDatabase(),
-            ),
-          );
+          ;
         },
         child: Icon(
           Icons.person_add_alt,
@@ -40,21 +34,11 @@ class _HomeDatabaseState extends State<HomeDatabase> {
         ),
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.white),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (_) => EditDatabase(),
-              ),
-            );
-          },
+          onPressed: () => {},
         ),
       ),
-      body: FirebaseAnimatedList(
-        query: ref, //Dữ liệu bên DatabaseCustom sẽ được đưa vào từ đây (ref)
-        shrinkWrap: true,
-        itemBuilder: (context, snapshot, animation, index) {
-          return GestureDetector(
+      body: ( 
+          GestureDetector(
             onTap: () {},
             child: Container(
               child: Padding(
@@ -72,11 +56,11 @@ class _HomeDatabaseState extends State<HomeDatabase> {
                       Icons.person_add_disabled_outlined,
                     ),
                     onPressed: () {
-                      ref.child(snapshot.key!).remove();
+                      
                     },
                   ),
                   title: Text(
-                    snapshot.value.toString(),
+                   '',
                     style: TextStyle(
                       fontSize: 25,
                       fontWeight: FontWeight.bold,
@@ -90,4 +74,5 @@ class _HomeDatabaseState extends State<HomeDatabase> {
       ),
     );
   }
+
 }
