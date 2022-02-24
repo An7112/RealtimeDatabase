@@ -78,7 +78,7 @@ class EditDatabase extends StatelessWidget {
                 padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
                 color: Color(0xff003333),
                 onPressed: () {
-                  ref.push().set({Name.text: Phone.text}).asStream();
+                  ref.push().set({"Name": Name.text, "Phone": Phone.text});
                   Navigator.pushReplacement(context,
                       MaterialPageRoute(builder: (_) => HomeDatabase()));
                 },

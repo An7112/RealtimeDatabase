@@ -18,7 +18,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "user app",
+      title: "User app",
       theme: ThemeData(
         primaryColor: Colors.greenAccent[700],
       ),

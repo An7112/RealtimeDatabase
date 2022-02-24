@@ -17,19 +17,6 @@ class _HomeDatabaseState extends State<HomeDatabase> {
     final ref = RealtimeDatabase.ref().child('Users');
     return Scaffold(
       backgroundColor: Color(0xff009966),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (_) => EditDatabase(),
-            ),
-          );
-        },
-        child: Icon(
-          Icons.person_add_alt,
-        ),
-      ),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         title: Text(
@@ -51,7 +38,7 @@ class _HomeDatabaseState extends State<HomeDatabase> {
         ),
       ),
       body: FirebaseAnimatedList(
-        query: ref, //Dữ liệu bên DatabaseCustom sẽ được đưa vào từ đây (ref)
+        query: (ref),
         shrinkWrap: true,
         itemBuilder: (context, snapshot, animation, index) {
           return GestureDetector(
@@ -60,19 +47,14 @@ class _HomeDatabaseState extends State<HomeDatabase> {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: ListTile(
-                  shape: RoundedRectangleBorder(
-                    side: BorderSide(
-                      color: Colors.white,
-                    ),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  tileColor: Colors.indigo[100],
                   trailing: IconButton(
                     icon: Icon(
                       Icons.person_add_disabled_outlined,
                     ),
                     onPressed: () {
                       ref.child(snapshot.key!).remove();
+                      print('deleted');
+                      _displayDialog(context);
                     },
                   ),
                   title: Text(
@@ -88,6 +70,31 @@ class _HomeDatabaseState extends State<HomeDatabase> {
           );
         },
       ),
+    );
+  }
+
+  _displayDialog(BuildContext context) async {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Expanded(
+          child: AlertDialog(
+            title: Text('Delete'),
+            content: Text('You have successfully deleted'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text(
+                  'OK',
+                  style: TextStyle(color: Colors.black),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }
